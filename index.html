@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método Personal Soccer — Yuri Novaes</title>
+<meta name="description" content="Aprenda a estruturar um programa de Personal Soccer capaz de atrair mais atletas e gerar mais receita todos os meses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   LP — METODO PERSONAL SOCCER
+   Design System v3.0 Premium
+   ============================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --purple:#7C5CFC;--purple-hover:#6A4CE8;--purple-light:#9B7FFF;--purple-deep:#5B3FD4;--purple-soft:#C4B5FD;
+  --dark-ultra:#050508;--dark-base:#0A0A0F;--dark-alt1:#0F0F16;--dark-alt2:#16161F;--dark-alt3:#1E1E2A;
+  --lav-ultra:#F5F0FF;--lav-light:#EDE5FF;--lav-medium:#DDD0FF;--lav-accent:#C4B5FD;
+  --t-white:#FFFFFF;--t-soft:#E8E8F0;--t-muted:#A0A0B8;--t-faint:#6B6B80;
+  --t-dk-title:#1A1A2E;--t-dk-body:#2D2D44;--t-dk-muted:#555566;
+  --green:#22C55E;--yellow:#FBBF24;
+  --b10:rgba(255,255,255,0.08);--b-purple:rgba(124,92,252,0.3);--b-light:rgba(124,92,252,0.15);
+}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--dark-base);color:var(--t-soft);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ---- Shared ---- */
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+.container-narrow{max-width:720px;margin:0 auto;padding:0 32px}
+.text-center{text-align:center}
+
+/* ---- Buttons ---- */
+.btn-pill{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#7C5CFC,#5B3FD4);color:#fff;font-family:'Inter',sans-serif;font-weight:700;font-size:15px;padding:18px 40px;border-radius:100px;border:none;cursor:pointer;box-shadow:0 4px 24px rgba(124,92,252,0.3);transition:all .3s;text-decoration:none}
+.btn-pill:hover{box-shadow:0 8px 36px rgba(124,92,252,0.5);transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--purple);font-family:'Inter',sans-serif;font-weight:600;font-size:14px;padding:16px 32px;border-radius:100px;border:2px solid rgba(124,92,252,0.4);cursor:pointer;transition:all .3s;text-decoration:none}
+.btn-outline:hover{background:rgba(124,92,252,0.08);border-color:var(--purple)}
+
+/* ---- Badge ---- */
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,252,0.1);border:1px solid var(--b-purple);border-radius:100px;padding:8px 20px;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.06em;color:var(--purple-light)}
+.badge.on-light{background:rgba(124,92,252,0.06);border-color:var(--b-light);color:var(--purple-deep)}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--purple);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+
+/* ---- Pre-header ---- */
+.pre{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);margin-bottom:12px}
+
+/* ---- Scroll reveal ---- */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease-out,transform .7s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ============================================
+   NAV
+   ============================================ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);transition:background .3s}
+.nav.scrolled{background:rgba(10,10,15,0.92)}
+.nav-logo{font-weight:700;font-size:17px;color:var(--t-white);letter-spacing:-0.02em}
+.nav-logo span{color:var(--purple)}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#7C5CFC,#5B3FD4);color:#fff;font-weight:600;font-size:13px;padding:10px 24px;border-radius:100px;border:none;cursor:pointer;transition:all .3s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(124,92,252,0.3)}
+
+/* ============================================
+   HERO — Centered + BG Photo + VSL + Mouse Effect
+   ============================================ */
+.hero{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center}
+/* BG photo: B&W, faded */
+.hero-bg{position:absolute;inset:0;background-image:url('fotos/pessoais/5.jpg');background-size:cover;background-position:center;filter:grayscale(100%) brightness(0.3);z-index:0}
+/* Dark overlay for text readability */
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(5,5,8,0.6) 0%,rgba(5,5,8,0.85) 100%);z-index:1}
+/* Purple spotlight that follows mouse */
+.hero-spotlight{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,252,0.08) 0%,transparent 60%);pointer-events:none;z-index:2;transform:translate(-50%,-50%);transition:left 0.3s ease-out,top 0.3s ease-out}
+/* Decorative circles */
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:350px;height:350px;border:1px solid rgba(124,92,252,0.05);border-radius:50%;pointer-events:none;z-index:2}
+.hero::after{content:'';position:absolute;bottom:-120px;left:-60px;width:450px;height:450px;border:1px solid rgba(124,92,252,0.04);border-radius:50%;pointer-events:none;z-index:2}
+
+.hero-inner{max-width:1040px;margin:0 auto;padding:160px 48px 100px;position:relative;z-index:3}
+.hero-inner .badge{margin-bottom:24px}
+.hero-inner h1{font-weight:800;font-size:clamp(30px,3.8vw,42px);color:var(--t-white);line-height:1.18;letter-spacing:-0.02em;margin-bottom:24px;max-width:920px;margin-left:auto;margin-right:auto}
+.hero-inner h1 .hl{color:var(--purple-light)}
+.hero-inner h1 .gradient{background:linear-gradient(135deg,#9B7FFF,#7C5CFC,#5B3FD4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-inner .sub{font-size:16px;color:var(--t-muted);line-height:1.7;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
+.hero-inner .sub strong{color:var(--t-soft);font-weight:600}
+
+/* VSL Video */
+.hero-vsl{margin:36px auto;max-width:680px;border-radius:16px;overflow:hidden;border:2px solid rgba(124,92,252,0.3);box-shadow:0 0 40px rgba(124,92,252,0.15),0 24px 64px rgba(0,0,0,0.5);aspect-ratio:16/9;position:relative;background:var(--dark-alt2)}
+.hero-vsl iframe{width:100%;height:100%;border:none}
+/* VSL click-to-play overlay */
+.vsl-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;cursor:pointer;z-index:2;background:rgba(5,5,8,0.4);transition:all .3s}
+.vsl-overlay:hover{background:rgba(5,5,8,0.2)}
+.vsl-play{width:80px;height:80px;border-radius:50%;background:rgba(124,92,252,0.85);display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(124,92,252,0.4);transition:all .3s}
+.vsl-overlay:hover .vsl-play{background:var(--purple);transform:scale(1.1)}
+.vsl-play svg{margin-left:4px}
+.vsl-label{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;color:var(--t-soft);letter-spacing:.06em;text-transform:uppercase}
+
+.hero-vsl-text{font-size:14px;color:var(--t-faint);line-height:1.7;max-width:620px;margin:24px auto 0;font-style:italic}
+.hero-vsl-text .gradient{font-style:normal;font-weight:600}
+.hero-btns{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center;margin-top:32px}
+
+/* ============================================
+   MARQUEE
+   ============================================ */
+.marquee-wrap{position:relative;overflow:visible;padding:0;margin-top:-30px;margin-bottom:-30px;z-index:10;background:none}
+.marquee-band{background:linear-gradient(135deg,#7C5CFC,#9B7FFF,#C4B5FD);padding:14px 0;overflow:hidden;transform:rotate(-2deg) scale(1.08);box-shadow:0 4px 40px rgba(124,92,252,0.3)}
+.marquee-reflect{background:linear-gradient(135deg,#0A0A0F,#16161F,#1E1E2A);padding:10px 0;overflow:hidden;transform:rotate(-2deg) scale(1.08) translateY(2px);margin-top:4px}
+.marquee-track{display:flex;gap:40px;animation:mq 30s linear infinite;white-space:nowrap;align-items:center}
+.marquee-track span{font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.95);display:flex;align-items:center;gap:14px;flex-shrink:0}
+.mq-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);flex-shrink:0}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* (Hub section CSS removed — replaced by timeline + glass cards) */
+
+/* ============================================
+   GARANTIA SELO ANIMADO
+   ============================================ */
+.garantia-section{background:var(--dark-alt1);padding:40px 0;display:flex;justify-content:center}
+.garantia-wrap{display:flex;align-items:center;gap:60px;max-width:1140px;padding:0 48px;margin:0 auto}
+.selo-container{flex-shrink:0;position:relative;width:240px;height:240px}
+/* Outer ring */
+.selo-ring-outer{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(124,92,252,0.15);animation:selo-pulse 4s ease-in-out infinite}
+@keyframes selo-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:.7}}
+/* Middle ring */
+.selo-ring-mid{position:absolute;inset:15px;border-radius:50%;border:1px solid rgba(124,92,252,0.1)}
+/* Tick marks */
+.selo-ticks{position:absolute;inset:8px;border-radius:50%;animation:selo-spin-slow 60s linear infinite}
+@keyframes selo-spin-slow{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+/* Inner circle */
+.selo-inner{position:absolute;inset:52px;border-radius:50%;background:radial-gradient(circle at 40% 40%,var(--dark-alt3),var(--dark-ultra));display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 40px rgba(0,0,0,0.5);z-index:3}
+.selo-number{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:64px;color:var(--purple);line-height:1;text-shadow:0 4px 24px rgba(124,92,252,0.3)}
+/* Rotating text */
+.selo-text-ring{position:absolute;inset:0;animation:selo-spin 20s linear infinite;z-index:4}
+@keyframes selo-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.selo-text-ring text{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:8px;fill:var(--t-soft);letter-spacing:5px;text-transform:uppercase}
+
+.garantia-content{flex:1}
+.garantia-content h2{font-weight:700;font-size:28px;color:var(--t-white);margin-bottom:16px}
+.garantia-content p{color:var(--t-muted);font-size:15px;line-height:1.7;margin-bottom:8px}
+
+/* ============================================
+   LIGHT SECTION BASE
+   ============================================ */
+.section-light{background:var(--lav-ultra);padding:50px 0;position:relative;overflow:hidden}
+.section-light .s-inner{max-width:1140px;margin:0 auto;padding:0 48px;position:relative;z-index:2}
+.section-light::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(124,92,252,0.05) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.section-light .s-head{text-align:center;margin-bottom:32px;position:relative;z-index:2}
+.section-light .s-head h2{font-weight:700;font-size:clamp(28px,3vw,40px);color:var(--t-dk-title);letter-spacing:-0.02em}
+.section-light .s-head p{color:var(--t-dk-muted);margin-top:10px;font-size:15px;max-width:540px;margin-left:auto;margin-right:auto}
+
+/* ============================================
+   QUADRANT (4 PILARES)
+   ============================================ */
+.quadrant-layout{max-width:900px;margin:0 auto;position:relative;z-index:2}
+.q-outer{display:grid;grid-template-columns:1fr 340px 1fr;grid-template-rows:auto auto auto;gap:0;align-items:start}
+.q-desc{background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.7);border-radius:14px;padding:18px 22px;transition:all .3s}
+.q-desc:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(124,92,252,0.08)}
+.q-desc h5{font-weight:600;font-size:15px;color:var(--purple-deep);margin-bottom:4px}
+.q-desc p{font-size:12px;color:var(--t-dk-muted);line-height:1.5}
+.q-tl{grid-column:1;grid-row:1;justify-self:end;margin-right:20px;margin-top:20px;max-width:200px}
+.q-tr{grid-column:3;grid-row:1;justify-self:start;margin-left:20px;margin-top:20px;max-width:200px}
+.q-bl{grid-column:1;grid-row:3;justify-self:end;margin-right:20px;margin-bottom:20px;max-width:200px}
+.q-br{grid-column:3;grid-row:3;justify-self:start;margin-left:20px;margin-bottom:20px;max-width:200px}
+.q-center-col{grid-column:2;grid-row:1/4;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:40px 0}
+.q-arc{position:absolute;pointer-events:none;z-index:1}
+.q-arc-top{top:-30px;left:50%;transform:translateX(-50%);width:260px;height:130px;border:1.5px solid rgba(124,92,252,0.12);border-bottom:none;border-radius:130px 130px 0 0}
+.q-arc-bottom{bottom:-30px;left:50%;transform:translateX(-50%);width:260px;height:130px;border:1.5px solid rgba(124,92,252,0.12);border-top:none;border-radius:0 0 130px 130px}
+.q-arc-left{left:-30px;top:50%;transform:translateY(-50%);width:130px;height:260px;border:1.5px solid rgba(124,92,252,0.12);border-right:none;border-radius:130px 0 0 130px}
+.q-arc-right{right:-30px;top:50%;transform:translateY(-50%);width:130px;height:260px;border:1.5px solid rgba(124,92,252,0.12);border-left:none;border-radius:0 130px 130px 0}
+.q-float-icon{position:absolute;z-index:4;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.6);border:1.5px solid rgba(124,92,252,0.2);display:flex;align-items:center;justify-content:center;color:var(--purple);box-shadow:0 2px 12px rgba(124,92,252,0.1)}
+.quadrant-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;border-radius:24px;overflow:hidden;box-shadow:0 8px 48px rgba(124,92,252,0.12);position:relative;width:340px}
+.quadrant-cell{background:linear-gradient(135deg,rgba(196,181,253,0.3),rgba(124,92,252,0.25));backdrop-filter:blur(8px);padding:36px 20px;text-align:center;transition:all .3s}
+.quadrant-cell:hover{background:linear-gradient(135deg,rgba(196,181,253,0.45),rgba(124,92,252,0.4))}
+.q-icon{width:40px;height:40px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.25);border:1.5px solid rgba(255,255,255,0.5);border-radius:50%;color:var(--t-dk-title);transition:all .3s}
+.quadrant-cell:hover .q-icon{background:rgba(255,255,255,0.4);transform:scale(1.08)}
+.quadrant-cell h4{font-weight:600;font-size:14px;color:var(--t-dk-title)}
+.quadrant-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--purple-deep),var(--purple));display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 0 5px rgba(245,240,255,0.8),0 0 0 10px rgba(124,92,252,0.15),0 4px 32px rgba(124,92,252,0.4);color:#fff}
+.quadrant-center svg{margin-bottom:2px}
+.quadrant-center span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.05em}
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+.timeline-section{background:var(--lav-ultra);padding:40px 0 50px;position:relative}
+.timeline-section .timeline-wrap{max-width:1140px;padding:0 48px}
+.timeline-wrap{max-width:800px;margin:0 auto;position:relative;z-index:2}
+.timeline-head{margin-bottom:32px}
+.timeline-head h2{font-weight:700;font-size:clamp(26px,3vw,36px);color:var(--t-dk-title);letter-spacing:-0.02em;line-height:1.2}
+.timeline-head h2 .underline{text-decoration:underline;text-decoration-color:var(--purple-soft);text-underline-offset:5px;text-decoration-thickness:3px}
+.timeline-head h2 .purple{color:var(--purple)}
+.timeline-path{position:relative;display:flex;justify-content:space-between;align-items:flex-end;padding:0 40px;margin-bottom:56px;height:200px}
+.timeline-svg{position:absolute;inset:0;pointer-events:none}
+.timeline-step{display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;z-index:2}
+.timeline-circle{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--lav-ultra);border:2.5px solid var(--purple);color:var(--purple);transition:all .3s;box-shadow:0 4px 20px rgba(124,92,252,0.12)}
+.timeline-step.active .timeline-circle{background:linear-gradient(135deg,var(--purple),var(--purple-deep));color:#fff;border-color:transparent;box-shadow:0 6px 28px rgba(124,92,252,0.35)}
+.timeline-label{font-weight:600;font-size:13px;color:var(--t-dk-body);text-align:center;max-width:120px}
+.timeline-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tl-card{border-radius:18px;padding:28px;font-size:15px;line-height:1.65}
+.tl-card.purple{background:linear-gradient(135deg,var(--purple-light),var(--purple));color:#fff;box-shadow:0 8px 32px rgba(124,92,252,0.2)}
+.tl-card.glass{background:rgba(255,255,255,0.65);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.7);color:var(--t-dk-body)}
+.tl-card strong{font-weight:700}
+
+/* ============================================
+   BENTO (PARA QUEM E)
+   ============================================ */
+.bento-section{background:var(--lav-light);padding:100px 0}
+.bento-section .bento-container{max-width:1140px;padding-left:48px;padding-right:48px}
+.bento-container{max-width:920px;margin:0 auto;background:rgba(255,255,255,0.3);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.5);border-radius:28px;padding:56px 48px 48px;position:relative}
+.bento-head{text-align:center;margin-bottom:40px}
+.bento-head h2{font-weight:700;font-size:clamp(24px,3vw,32px);color:var(--t-dk-title);letter-spacing:-0.02em;margin-top:8px}
+.bento-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card-glass{background:rgba(255,255,255,0.7);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.8);border-radius:16px;padding:24px;transition:all .3s}
+.card-glass:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(124,92,252,0.06)}
+.card-glass .ck{color:var(--purple);margin-bottom:14px;opacity:.7}
+.card-glass p{color:var(--t-dk-body);font-size:14px;line-height:1.6}
+.card-glass-purple{background:linear-gradient(135deg,#9B7FFF,#7C5CFC);border-radius:16px;padding:24px;box-shadow:0 8px 32px rgba(124,92,252,0.2);transition:all .3s}
+.card-glass-purple:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(124,92,252,0.35)}
+.card-glass-purple .ck{color:rgba(255,255,255,0.6);margin-bottom:14px}
+.card-glass-purple p{color:#fff;font-size:14px;line-height:1.6}
+.card-photo-bento{border-radius:16px;overflow:hidden;position:relative;background-size:cover;background-position:center;min-height:160px;display:flex;align-items:flex-end;padding:16px}
+.card-photo-bento::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,0.7) 100%)}
+.card-photo-bento .photo-label{position:relative;z-index:2;font-size:12px;color:var(--t-soft);line-height:1.4;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);border-radius:8px;padding:8px 12px}
+
+/* ============================================
+   DARK SECTIONS
+   ============================================ */
+.section-dark{background:var(--dark-base);padding:100px 0;position:relative}
+.section-dark .s-inner{max-width:1140px;margin:0 auto;padding:0 48px}
+.section-dark .s-head{text-align:center;margin-bottom:32px}
+.section-dark .s-head h2{font-weight:700;font-size:clamp(28px,3vw,40px);color:var(--t-white);letter-spacing:-0.02em}
+.section-dark .s-head p{color:var(--t-muted);margin-top:10px;font-size:15px}
+
+/* (Radial hub CSS removed — replaced by timeline + glass cards) */
+
+/* ============================================
+   NUMBERS
+   ============================================ */
+.numbers-section{background:var(--dark-alt1);padding:100px 0}
+.numbers-section .s-inner{max-width:1140px;margin:0 auto;padding:0 48px}
+.num-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:0 auto}
+.card-num{background:var(--dark-alt2);border:1px solid var(--b10);border-radius:16px;padding:40px 24px;text-align:center;transition:all .3s}
+.card-num:hover{border-color:var(--b-purple);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.card-num .n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:56px;color:var(--purple);line-height:1;margin-bottom:8px}
+.card-num .l{font-size:13px;color:var(--t-muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* ============================================
+   BIO
+   ============================================ */
+.bio-section{background:var(--lav-ultra);position:relative;overflow:hidden}
+.bio-layout{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+.bio-text-col{padding:80px 48px 80px;max-width:620px;margin-left:auto;display:flex;flex-direction:column;justify-content:center}
+/* Photo side: full height, diagonal clip */
+.bio-photo-col{position:relative;overflow:hidden}
+.bio-photo-col .bio-img{position:absolute;inset:0;background-size:cover;background-position:center top;filter:grayscale(30%)}
+/* Diagonal clip: cuts from left side */
+.bio-photo-col::before{content:'';position:absolute;top:0;left:0;right:0;height:16px;background:linear-gradient(90deg,var(--lav-ultra),#C4B5FD,#7C5CFC);z-index:3}
+.bio-photo-col::after{content:'';position:absolute;top:0;left:0;bottom:0;width:100px;background:var(--lav-ultra);clip-path:polygon(0 0,100% 0,0 100%);z-index:2}
+.bio-text h2{font-weight:700;font-size:36px;color:var(--t-dk-title);letter-spacing:-0.02em;margin-bottom:20px}
+.bio-text p{color:var(--t-dk-muted);margin-bottom:14px;line-height:1.7;font-size:15px}
+.bio-text p strong{color:var(--t-dk-body);font-weight:600}
+.bio-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.bio-num-card{text-align:center;padding:20px 12px;background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.7);border-radius:14px;transition:all .3s}
+.bio-num-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(124,92,252,0.06)}
+.bio-num-card .n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:32px;color:var(--purple-deep);line-height:1}
+.bio-num-card .l{font-size:11px;color:var(--t-dk-muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+
+/* ============================================
+   CTA FINAL
+   ============================================ */
+.cta-section{background:var(--dark-ultra);padding:60px 0;text-align:center;position:relative;overflow:hidden}
+.cta-section .s-inner{max-width:1140px;margin:0 auto;padding:0 48px}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(124,92,252,0.1) 0%,transparent 50%),linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:100% 100%,50px 50px,50px 50px;pointer-events:none}
+.cta-section::after{content:'';position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;border:1px solid rgba(124,92,252,0.08);pointer-events:none}
+.cta-section>*{position:relative;z-index:1}
+.cta-section h2{font-weight:800;font-size:clamp(28px,3.5vw,44px);color:var(--t-white);letter-spacing:-0.02em;line-height:1.18;max-width:640px;margin:0 auto 16px}
+.cta-section p{color:var(--t-muted);max-width:480px;margin:0 auto 36px;font-size:16px}
+.cta-note{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:20px;color:var(--t-faint);font-size:13px}
+
+/* ============================================
+   DEPOIMENTOS + CARROSSEL
+   ============================================ */
+.depo-section{background:var(--dark-base);padding:50px 0;position:relative;overflow:hidden}
+.depo-inner{max-width:1140px;margin:0 auto;padding:0 48px}
+
+/* Video grid with neon glow */
+.depo-videos{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px}
+.depo-video{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:var(--dark-alt2);border:2px solid rgba(124,92,252,0.2);box-shadow:0 0 30px rgba(124,92,252,0.1),0 0 60px rgba(124,92,252,0.05);transition:all .3s}
+.depo-video:hover{border-color:rgba(124,92,252,0.5);box-shadow:0 0 40px rgba(124,92,252,0.2),0 0 80px rgba(124,92,252,0.1);transform:translateY(-4px)}
+.depo-video video{width:100%;height:100%;object-fit:cover}
+.depo-video-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,5,8,0.3);cursor:pointer;transition:all .3s;z-index:2}
+.depo-video-overlay:hover{background:rgba(5,5,8,0.1)}
+.depo-play{width:56px;height:56px;border-radius:50%;background:rgba(124,92,252,0.8);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(124,92,252,0.4)}
+.depo-play svg{margin-left:3px}
+/* Neon glow behind videos */
+.depo-videos::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80%;height:300px;background:radial-gradient(ellipse,rgba(124,92,252,0.06) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+/* Photo carousel */
+.carousel-wrap{position:relative;overflow:hidden;margin-top:16px}
+/* Fade edges */
+.carousel-wrap::before{content:'';position:absolute;top:0;left:0;bottom:0;width:120px;background:linear-gradient(90deg,var(--dark-base),transparent);z-index:3;pointer-events:none}
+.carousel-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:120px;background:linear-gradient(270deg,var(--dark-base),transparent);z-index:3;pointer-events:none}
+.carousel-track{display:flex;gap:20px;animation:carousel-scroll 30s linear infinite;width:max-content}
+.carousel-track:hover{animation-play-state:paused}
+.carousel-img{width:280px;height:200px;border-radius:14px;overflow:hidden;flex-shrink:0;border:1px solid rgba(124,92,252,0.15);transition:all .3s}
+.carousel-img:hover{border-color:rgba(124,92,252,0.4);box-shadow:0 0 20px rgba(124,92,252,0.1)}
+.carousel-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(30%);transition:filter .3s}
+.carousel-img:hover img{filter:grayscale(0%)}
+@keyframes carousel-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer{background:var(--dark-ultra);padding:40px 40px 24px;border-top:1px solid rgba(255,255,255,0.04);text-align:center}
+.footer p{font-size:13px;color:var(--t-faint)}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:120px 24px 60px;text-align:center;min-height:auto}
+  .hero-text .sub,.hero-text .vsub{margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center}
+  .hero-visual{margin-top:32px}
+  .hero-photo-card{width:280px;margin:0 auto}
+  .hero-photo-main{height:340px}
+  .hero-tagline,.float-card{display:none}
+  .nav{padding:14px 20px}
+  .section-light,.section-dark,.timeline-section,.bento-section,.numbers-section,.bio-section,.cta-section,.garantia-section{padding:60px 20px}
+  .q-outer{grid-template-columns:1fr;grid-template-rows:auto}
+  .q-tl,.q-tr,.q-bl,.q-br{grid-column:1;justify-self:center;margin:8px 0;max-width:100%}
+  .q-center-col{grid-column:1;grid-row:auto;padding:20px 0}
+  .q-arc,.q-float-icon,svg.q-svg{display:none}
+  .quadrant-grid{width:100%;max-width:340px;margin:0 auto}
+  .timeline-path{flex-direction:column;height:auto;gap:24px;padding:0;align-items:center}
+  .timeline-step{margin-bottom:0!important;align-self:center!important}
+  .timeline-svg{display:none}
+  .timeline-cards{grid-template-columns:1fr}
+  .bento-container{padding:40px 20px 32px}
+  .bento-grid{grid-template-columns:1fr}
+  .num-grid{grid-template-columns:1fr}
+  .bio-grid{grid-template-columns:1fr}
+  .bio-nums{grid-template-columns:repeat(3,1fr);gap:8px}
+  .garantia-wrap{flex-direction:column;text-align:center;gap:32px;padding:0 20px}
+  .selo-container{width:200px;height:200px;margin:0 auto}
+  .selo-number{font-size:60px}
+  .encontrar-grid{grid-template-columns:1fr !important}
+  .depo-videos{grid-template-columns:1fr !important}
+  .depo-inner{padding:0 20px}
+  .carousel-img{width:220px;height:160px}
+  .bio-layout{grid-template-columns:1fr}
+  .bio-text-col{padding:60px 24px}
+  .bio-photo-col{height:400px}
+  .bio-photo-col::before{width:100%;height:4px;top:0;left:0;right:0;bottom:auto}
+}
+@media(max-width:480px){
+  .bio-nums{grid-template-columns:1fr}
+  .hero-photo-card{width:240px}
+  .hero-photo-main{height:300px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAV
+     ============================================ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">METODO <span>PS</span></a>
+  <a href="#cta" class="nav-cta">Quero o método</a>
+</nav>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-spotlight" id="heroSpotlight"></div>
+  <div class="hero-inner">
+    <span class="badge"><span class="badge-dot"></span> Método Personal Soccer</span>
+    <h1>Pare de tratar o Personal Soccer como <span class="hl">renda extra</span> e construa um programa que <span class="gradient">coloca dinheiro de verdade no seu bolso</span></h1>
+    <p class="sub">Aprenda a sair das <strong>aulas avulsas</strong>, parar de depender de <strong>indicação</strong> e estruturar um programa capaz de atrair mais atletas e gerar <strong>mais receita todos os meses</strong> — comece a atrair e captar atletas todos os meses para o seu programa.</p>
+
+    <!-- VSL -->
+    <div class="hero-vsl" id="vslContainer">
+      <div class="vsl-overlay" id="vslOverlay">
+        <div class="vsl-play">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <span class="vsl-label">Assistir o vídeo</span>
+      </div>
+    </div>
+
+    <p class="hero-vsl-text">A maioria dos treinadores tenta resolver isso estudando mais exercícios, fazendo mais cursos ou trabalhando ainda mais. Mas sem um <span class="gradient">sistema claro</span>, todo crescimento vira instável, cansativo e difícil de sustentar. Não é falta de talento. É falta de <span class="gradient">método</span>.</p>
+
+    <div class="hero-btns">
+      <a href="#cta" class="btn-pill">Quero o método <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="#metodo" class="btn-outline">Saiba mais <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     MARQUEE
+     ============================================ -->
+<div class="marquee-wrap">
+  <div class="marquee-band">
+    <div class="marquee-track">
+      <span><span class="mq-dot"></span>O MÉTODO DOS TREINADORES QUE FATURAM DE VERDADE</span>
+      <span><span class="mq-dot"></span>ESTRUTURE SEU PROGRAMA</span>
+      <span><span class="mq-dot"></span>+400 ATLETAS TREINADOS</span>
+      <span><span class="mq-dot"></span>VALIDADO EM 2 PAÍSES</span>
+      <span><span class="mq-dot"></span>O MÉTODO DOS TREINADORES QUE FATURAM DE VERDADE</span>
+      <span><span class="mq-dot"></span>ESTRUTURE SEU PROGRAMA</span>
+      <span><span class="mq-dot"></span>+400 ATLETAS TREINADOS</span>
+      <span><span class="mq-dot"></span>VALIDADO EM 2 PAÍSES</span>
+    </div>
+  </div>
+  <div class="marquee-reflect">
+    <div class="marquee-track" style="animation-direction:reverse">
+      <span><span class="mq-dot"></span>O MÉTODO DOS TREINADORES QUE FATURAM DE VERDADE</span>
+      <span><span class="mq-dot"></span>ESTRUTURE SEU PROGRAMA</span>
+      <span><span class="mq-dot"></span>+400 ATLETAS TREINADOS</span>
+      <span><span class="mq-dot"></span>VALIDADO EM 2 PAÍSES</span>
+      <span><span class="mq-dot"></span>O MÉTODO DOS TREINADORES QUE FATURAM DE VERDADE</span>
+      <span><span class="mq-dot"></span>ESTRUTURE SEU PROGRAMA</span>
+      <span><span class="mq-dot"></span>+400 ATLETAS TREINADOS</span>
+      <span><span class="mq-dot"></span>VALIDADO EM 2 PAÍSES</span>
+      <span><span class="mq-dot"></span>O MÉTODO DOS TREINADORES QUE FATURAM DE VERDADE</span>
+      <span><span class="mq-dot"></span>ESTRUTURE SEU PROGRAMA</span>
+      <span><span class="mq-dot"></span>+400 ATLETAS TREINADOS</span>
+      <span><span class="mq-dot"></span>VALIDADO EM 2 PAÍSES</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     METODO 4 PILARES (Quadrant)
+     ============================================ -->
+<section class="section-light" id="metodo">
+  <div class="s-inner">
+  <div class="s-head reveal">
+    <span class="badge on-light"><span class="badge-dot"></span> Nosso Método</span>
+    <h2>O Método dos 4 Pilares</h2>
+    <p>Foi para resolver isso que eu organizei tudo em um método simples e aplicável, baseado em 4 pilares fundamentais:</p>
+  </div>
+
+  <div class="quadrant-layout reveal">
+    <div class="q-outer">
+      <div class="q-desc q-tl reveal reveal-delay-1"><h5>Atração</h5><p>Como se posicionar melhor, gerar autoridade e atrair os atletas certos.</p></div>
+      <div class="q-center-col">
+        <div class="q-arc q-arc-top"></div>
+        <div class="q-arc q-arc-bottom"></div>
+        <div class="q-arc q-arc-left"></div>
+        <div class="q-arc q-arc-right"></div>
+        <div class="q-float-icon" style="top:-8px;left:20px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="q-float-icon" style="top:-8px;right:20px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 13L2 9z"/></svg></div>
+        <div class="q-float-icon" style="bottom:-8px;left:20px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
+        <div class="q-float-icon" style="bottom:-8px;right:20px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></div>
+        <svg class="q-svg" viewBox="0 0 420 380" style="position:absolute;top:-40px;left:-40px;width:420px;height:380px;pointer-events:none;z-index:3">
+          <path d="M 40 60 Q 40 100, 100 120" stroke="rgba(124,92,252,0.2)" stroke-width="1.5" fill="none"/><circle cx="40" cy="60" r="4" fill="rgba(124,92,252,0.3)"/><circle cx="100" cy="120" r="3" fill="rgba(124,92,252,0.25)"/>
+          <path d="M 380 60 Q 380 100, 320 120" stroke="rgba(124,92,252,0.2)" stroke-width="1.5" fill="none"/><circle cx="380" cy="60" r="4" fill="rgba(124,92,252,0.3)"/><circle cx="320" cy="120" r="3" fill="rgba(124,92,252,0.25)"/>
+          <path d="M 40 320 Q 40 280, 100 260" stroke="rgba(124,92,252,0.2)" stroke-width="1.5" fill="none"/><circle cx="40" cy="320" r="4" fill="rgba(124,92,252,0.3)"/><circle cx="100" cy="260" r="3" fill="rgba(124,92,252,0.25)"/>
+          <path d="M 380 320 Q 380 280, 320 260" stroke="rgba(124,92,252,0.2)" stroke-width="1.5" fill="none"/><circle cx="380" cy="320" r="4" fill="rgba(124,92,252,0.3)"/><circle cx="320" cy="260" r="3" fill="rgba(124,92,252,0.25)"/>
+          <path d="M 10 10 L 10 80" stroke="rgba(124,92,252,0.1)" stroke-width="1" fill="none"/><path d="M 10 10 L 80 10" stroke="rgba(124,92,252,0.1)" stroke-width="1" fill="none"/>
+          <path d="M 410 10 L 410 80" stroke="rgba(124,92,252,0.1)" stroke-width="1" fill="none"/><path d="M 410 10 L 340 10" stroke="rgba(124,92,252,0.1)" stroke-width="1" fill="none"/>
+          <path d="M 10 370 L 10 300" stroke="rgba(124,92,252,0.1)" stroke-width="1" fill="none"/><path d="M 10 370 L 80 370" stroke="rgba(124,92,252,0.1)" stroke-width="1" fill="none"/>
+          <path d="M 410 370 L 410 300" stroke="rgba(124,92,252,0.1)" stroke-width="1" fill="none"/><path d="M 410 370 L 340 370" stroke="rgba(124,92,252,0.1)" stroke-width="1" fill="none"/>
+        </svg>
+        <div class="quadrant-grid">
+          <div class="quadrant-cell"><div class="q-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><h4>Atração</h4></div>
+          <div class="quadrant-cell"><div class="q-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 13L2 9z"/></svg></div><h4>Oferta</h4></div>
+          <div class="quadrant-cell"><div class="q-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div><h4>Captação</h4></div>
+          <div class="quadrant-cell"><div class="q-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></div><h4>Gerenciamento</h4></div>
+        </div>
+        <div class="quadrant-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg><span>MPS</span></div>
+      </div>
+      <div class="q-desc q-tr reveal reveal-delay-2"><h5>Oferta</h5><p>Como parar de vender apenas aulas e estruturar um programa com mais valor.</p></div>
+      <div class="q-desc q-bl reveal reveal-delay-3"><h5>Captação</h5><p>Como organizar sua entrada de alunos, conduzir conversas e aumentar a conversão.</p></div>
+      <div class="q-desc q-br reveal reveal-delay-4"><h5>Gerenciamento</h5><p>Como entender seus números, crescer com clareza e sair do caos operacional.</p></div>
+    </div>
+  </div>
+
+  <p class="text-center reveal" style="margin-top:48px;color:var(--t-dk-muted);font-size:16px;position:relative;z-index:2">Esses 4 pilares transformam treino em programa.<br>E programa em negócio estruturado.<br><strong style="color:var(--t-dk-title)">É exatamente isso que você vai aprender no Método Personal Soccer.</strong></p>
+  </div><!-- /s-inner -->
+</section>
+
+<!-- ============================================
+     O QUE VOCE VAI ENCONTRAR — Timeline + Glass Cards
+     ============================================ -->
+<section class="section-light" id="encontrar" style="padding:50px 0">
+  <div class="s-inner">
+    <div class="s-head reveal text-center" style="margin-bottom:32px">
+      <h2 style="font-weight:700;font-size:clamp(28px,3vw,40px);color:var(--t-dk-title);letter-spacing:-0.02em">O que você vai encontrar</h2>
+      <p style="color:var(--t-dk-muted);margin-top:10px;font-size:15px">Dentro do curso, você terá acesso a:</p>
+    </div>
+
+    <!-- Timeline path with 3 steps — all positioned absolutely -->
+    <div class="tl-container reveal" style="position:relative;height:240px;max-width:800px;margin:0 auto 48px">
+      <!-- SVG curve behind everything -->
+      <svg style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible" viewBox="0 0 1000 240" preserveAspectRatio="none">
+        <defs><linearGradient id="tl-grad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#C4B5FD"/><stop offset="50%" stop-color="#7C5CFC"/><stop offset="100%" stop-color="#5B3FD4"/></linearGradient></defs>
+        <path d="M 85 130 Q 300 125 500 105 Q 700 55 910 35" stroke="url(#tl-grad2)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <polygon points="915,28 925,35 913,40" fill="#7C5CFC"/>
+      </svg>
+      <!-- Step 1: bottom-left -->
+      <div style="position:absolute;left:5%;bottom:10%;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2">
+        <div style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--lav-ultra);border:2.5px solid var(--purple);color:var(--purple);box-shadow:0 4px 20px rgba(124,92,252,0.12)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+        <div style="font-weight:600;font-size:13px;color:var(--t-dk-body);text-align:center">Conteúdo<br>organizado</div>
+      </div>
+      <!-- Step 2: center -->
+      <div style="position:absolute;left:45%;top:30%;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2">
+        <div style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--lav-ultra);border:2.5px solid var(--purple);color:var(--purple);box-shadow:0 4px 20px rgba(124,92,252,0.12)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div style="font-weight:600;font-size:13px;color:var(--t-dk-body);text-align:center">Estrutura<br>prática</div>
+      </div>
+      <!-- Step 3: top-right -->
+      <div style="position:absolute;right:2%;top:0;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2">
+        <div style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--purple),var(--purple-deep));color:#fff;box-shadow:0 6px 28px rgba(124,92,252,0.35)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div style="font-weight:600;font-size:13px;color:var(--t-dk-body);text-align:center">Crescimento<br>profissional</div>
+      </div>
+    </div>
+
+    <!-- 6 items as glass cards -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:800px;margin:0 auto" class="encontrar-grid">
+      <div class="card-glass reveal reveal-delay-1" style="padding:20px"><div class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p style="font-size:14px;color:var(--t-dk-body)">Aulas organizadas por pilares</p></div>
+      <div class="card-glass reveal reveal-delay-2" style="padding:20px"><div class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p style="font-size:14px;color:var(--t-dk-body)">Estrutura prática e fácil de aplicar</p></div>
+      <div class="card-glass reveal reveal-delay-3" style="padding:20px"><div class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p style="font-size:14px;color:var(--t-dk-body)">Modelos estratégicos de organização</p></div>
+      <div class="card-glass reveal reveal-delay-1" style="padding:20px"><div class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p style="font-size:14px;color:var(--t-dk-body)">Direcionamento para quem está começando</p></div>
+      <div class="card-glass reveal reveal-delay-2" style="padding:20px"><div class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p style="font-size:14px;color:var(--t-dk-body)">Direcionamento para quem já tem alunos</p></div>
+      <div class="card-glass reveal reveal-delay-3" style="padding:20px"><div class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p style="font-size:14px;color:var(--t-dk-body)">Visão de crescimento profissional</p></div>
+    </div>
+
+    <p class="text-center reveal" style="margin-top:36px;color:var(--t-dk-muted);font-size:16px"><strong style="color:var(--t-dk-title)">Não é conteúdo para motivar. É conteúdo para estruturar e lucrar.</strong></p>
+  </div>
+</section>
+
+<!-- ============================================
+     QUEM SOU EU
+     ============================================ -->
+<section class="bio-section">
+  <div class="bio-layout">
+    <div class="bio-text-col">
+      <div class="pre reveal">QUEM SOU EU</div>
+      <h2 class="reveal" style="font-weight:700;font-size:36px;color:var(--t-dk-title);letter-spacing:-0.02em;margin-bottom:20px">Yuri Novaes</h2>
+      <p class="reveal" style="color:var(--t-dk-muted);margin-bottom:14px;line-height:1.7;font-size:15px">Sou treinador especializado em desenvolvimento técnico e estruturador de programas de Personal Soccer.</p>
+      <p class="reveal" style="color:var(--t-dk-muted);margin-bottom:14px;line-height:1.7;font-size:15px">Depois de sair do Brasil para jogar profissionalmente na Ásia, construí do zero, em Bangkok, na Tailândia, um programa particular de treinos que se tornou <strong style="color:var(--t-dk-body)">o maior programa particular do país</strong>, com mais de 400 atletas treinados.</p>
+      <p class="reveal" style="color:var(--t-dk-muted);margin-bottom:14px;line-height:1.7;font-size:15px">Mais tarde, me mudei para Braga, Portugal. Novo mercado. Nova rede. <strong style="color:var(--t-dk-body)">Mesmo método.</strong> Em menos de 1 ano, treinei quase 100 atletas na cidade, validando novamente que crescimento não depende de sorte, indicação ou localização.</p>
+      <p class="reveal" style="color:var(--t-dk-body);margin-bottom:14px;line-height:1.7;font-size:15px;font-weight:600">Depende de estrutura.</p>
+      <p class="reveal" style="color:var(--t-dk-muted);margin-bottom:14px;line-height:1.7;font-size:15px">Hoje, ensino treinadores a organizarem seus programas com base em 4 pilares: <strong style="color:var(--t-dk-body)">Atração, Oferta, Captação e Gerenciamento.</strong></p>
+      <p class="reveal" style="color:var(--t-dk-muted);line-height:1.7;font-size:15px">Porque ser bom tecnicamente é importante. <strong style="color:var(--t-dk-body)">Mas sem sistema, não existe escala.</strong></p>
+    </div>
+    <div class="bio-photo-col">
+      <div class="bio-img" style="background-image:url('fotos/pessoais/WhatsApp Image 2026-02-13 at 15.20.06.jpeg')"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     CTA FINAL + DEPOIMENTOS + CARROSSEL
+     ============================================ -->
+<section class="cta-section" id="cta">
+  <div class="s-inner">
+  <h2 class="reveal">Estruture seu programa com mais clareza, previsibilidade e <span style="background:linear-gradient(135deg,#9B7FFF,#7C5CFC,#5B3FD4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">visão de crescimento.</span></h2>
+  <a href="#" class="btn-pill reveal" style="margin-top:36px">Quero o método <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+
+  <!-- Videos de depoimento -->
+  <div class="depo-videos reveal" style="margin-top:56px">
+    <div class="depo-video" id="vid1">
+      <video src="fotos/depoimentos/DEPOIMENTO RAY.mp4" preload="metadata" playsinline></video>
+      <div class="depo-video-overlay" onclick="this.style.display='none';this.parentElement.querySelector('video').play()">
+        <div class="depo-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      </div>
+    </div>
+    <div class="depo-video" id="vid2">
+      <video src="fotos/depoimentos/depoimento Ray horizontal.mp4" preload="metadata" playsinline></video>
+      <div class="depo-video-overlay" onclick="this.style.display='none';this.parentElement.querySelector('video').play()">
+        <div class="depo-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      </div>
+    </div>
+    <div class="depo-video" id="vid3">
+      <video src="fotos/depoimentos/dab85f49-7c3f-437a-aec6-daa1c875f81c.mp4" preload="metadata" playsinline></video>
+      <div class="depo-video-overlay" onclick="this.style.display='none';this.parentElement.querySelector('video').play()">
+        <div class="depo-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      </div>
+    </div>
+  </div>
+  </div><!-- /s-inner -->
+
+  <!-- Carrossel de fotos (full width, loop infinito) -->
+  <div class="carousel-wrap" style="margin-top:48px">
+    <div class="carousel-track">
+      <div class="carousel-img"><img src="fotos/pessoais/yuri.jpg" alt="Yuri treinando" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/2.jpg" alt="Yuri no campo" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/21.jpg" alt="Yuri uniforme" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/5.jpg" alt="Yuri com alunos" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/32.JPG" alt="Yuri descansando" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/DSC02987.jpg" alt="Yuri treino" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/yuri.jpg" alt="Yuri treinando" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/2.jpg" alt="Yuri no campo" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/21.jpg" alt="Yuri uniforme" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/5.jpg" alt="Yuri com alunos" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/32.JPG" alt="Yuri descansando" loading="lazy"></div>
+      <div class="carousel-img"><img src="fotos/pessoais/DSC02987.jpg" alt="Yuri treino" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     GARANTIA
+     ============================================ -->
+<section class="garantia-section">
+  <div class="garantia-wrap">
+    <!-- Selo animado -->
+    <div class="selo-container reveal">
+      <!-- Outer pulsing ring -->
+      <div class="selo-ring-outer"></div>
+      <!-- Middle ring -->
+      <div class="selo-ring-mid"></div>
+      <!-- Tick marks (SVG) -->
+      <div class="selo-ticks">
+        <svg viewBox="0 0 240 240" width="100%" height="100%">
+          <g transform="translate(120,120)">
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(0)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(10)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(20)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(30)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(40)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(50)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(60)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(70)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(80)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(90)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(100)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(110)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(120)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(130)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(140)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(150)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(160)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(170)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(180)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(190)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(200)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(210)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(220)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(230)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(240)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(250)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(260)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(270)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(280)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(290)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(300)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(310)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(320)"/>
+            <line x1="0" y1="-105" x2="0" y2="-95" stroke="#7C5CFC" stroke-width="2" transform="rotate(330)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(340)"/>
+            <line x1="0" y1="-105" x2="0" y2="-98" stroke="rgba(124,92,252,0.3)" stroke-width="1.5" transform="rotate(350)"/>
+          </g>
+        </svg>
+      </div>
+      <!-- Rotating text around circle -->
+      <div class="selo-text-ring">
+        <svg viewBox="0 0 240 240" width="100%" height="100%">
+          <defs><path id="selo-path" d="M 120,120 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0"/></defs>
+          <text><textPath href="#selo-path">7 DIAS DE GARANTIA  -  7 DIAS DE GARANTIA  -  </textPath></text>
+        </svg>
+      </div>
+      <!-- Inner circle with number -->
+      <div class="selo-inner">
+        <span class="selo-number">7</span>
+      </div>
+    </div>
+    <!-- Text content -->
+    <div class="garantia-content reveal">
+      <h2>Garantia de 7 dias</h2>
+      <p>Você entra sem risco.</p>
+      <p>Se entender que o curso não é para você, basta solicitar o reembolso dentro do prazo.</p>
+      <p><strong style="color:var(--t-white)">Sem burocracia.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <p>Método Personal Soccer &copy; 2026 &mdash; Yuri Novaes &mdash; Todos os direitos reservados</p>
+</footer>
+
+<!-- ============================================
+     SCRIPTS
+     ============================================ -->
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Hero mouse spotlight effect
+const heroSection = document.getElementById('hero');
+const spotlight = document.getElementById('heroSpotlight');
+if (heroSection && spotlight) {
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    spotlight.style.left = (e.clientX - rect.left) + 'px';
+    spotlight.style.top = (e.clientY - rect.top) + 'px';
+  });
+}
+
+// VSL click-to-play
+const vslOverlay = document.getElementById('vslOverlay');
+const vslContainer = document.getElementById('vslContainer');
+if (vslOverlay && vslContainer) {
+  vslOverlay.addEventListener('click', () => {
+    vslContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/C7eb1TGyV-I?autoplay=1&rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="width:100%;height:100%;border:none;position:absolute;inset:0"></iframe>';
+  });
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Counter animation
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      const prefix = target === 400 ? '+' : (target === 1 ? '<' : '');
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 40));
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        el.textContent = prefix + current;
+      }, 30);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
