@@ -327,7 +327,7 @@ a{text-decoration:none;color:inherit}
    ============================================ */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;padding:100px 24px 60px;text-align:center;min-height:auto}
-  .hero-inner{padding:100px 20px 60px}
+  .hero-inner{padding:72px 20px 48px}
   .hero-inner h1{font-size:clamp(22px,6vw,30px)}
   .hero-inner .sub{font-size:14px}
   .hero-text .sub,.hero-text .vsub{margin-left:auto;margin-right:auto}
@@ -352,9 +352,11 @@ a{text-decoration:none;color:inherit}
   .q-center-col{grid-column:1;grid-row:auto;padding:20px 0}
   .q-arc,.q-float-icon,svg.q-svg{display:none}
   .quadrant-grid{width:100%;max-width:340px;margin:0 auto}
-  .tl-container{height:auto !important;display:flex;flex-direction:column;gap:24px;align-items:center;padding:0 !important}
-  .tl-container svg{display:none}
+  .tl-container{height:auto !important;display:flex;flex-direction:column;gap:32px;align-items:center;padding:20px 0 !important;position:relative !important}
+  .tl-container>svg{display:none}
   .tl-container>div[style]{position:static !important;left:auto !important;right:auto !important;top:auto !important;bottom:auto !important}
+  .tl-container::before{content:'';position:absolute;top:30px;bottom:30px;left:50%;width:3px;background:linear-gradient(180deg,#C4B5FD,#7C5CFC,#5B3FD4);border-radius:3px;transform:translateX(-50%);z-index:0}
+  .tl-container>div[style]{z-index:1}
   .timeline-path{flex-direction:column;height:auto;gap:24px;padding:0;align-items:center}
   .timeline-step{margin-bottom:0!important;align-self:center!important}
   .timeline-svg{display:none}
@@ -380,6 +382,8 @@ a{text-decoration:none;color:inherit}
   .bio-whatsapp{bottom:16px;right:16px;width:48px;height:48px}
   .bio-whatsapp svg{width:20px;height:20px}
   .btn-pill{padding:16px 32px;font-size:14px}
+  .cta-section{padding:48px 0}
+  .cta-section .s-inner{padding:0 20px}
   .cta-section h2{font-size:clamp(22px,5.5vw,32px)}
   .marquee-band,.marquee-reflect{transform:rotate(-2deg) scale(1.04)}
 }
@@ -390,7 +394,7 @@ a{text-decoration:none;color:inherit}
   .nav-timer-label{display:none}
   .timer-box{padding:4px 6px;min-width:38px}
   .timer-box span{font-size:16px}
-  .hero-inner{padding:80px 16px 48px}
+  .hero-inner{padding:64px 16px 40px}
   .hero-inner h1{font-size:clamp(20px,5.5vw,26px)}
   .hero-vsl-text{font-size:12px}
   .garantia-wrap{padding:0 12px}
